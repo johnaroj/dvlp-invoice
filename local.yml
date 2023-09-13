@@ -11,11 +11,24 @@ services:
       - .:/app
     depends_on:
       - mongodb
-    ports:
-      - "1997:1997"
+    # ports:
+    #   - "1997:1997"
     environment:
       NODE_ENV: ${NODE_ENV}
       MONGO_URI: mongodb://${MONGO_ROOT_USERNAME}:{MONGO_ROOT_PASSWORD}@mongodb
+    networks:
+      - invoice
+
+  client:
+    restart: on-failure
+    build:
+      context: ./client
+      dockerfile: ./docker/local/Dockerfile
+    volumes:
+      - /app/node_modules
+      - ./client:/app
+    # ports:
+    #   - "3000:3000"
     networks:
       - invoice
 
@@ -57,9 +70,26 @@ services:
     networks:
       - invoice
 
+  nginx:
+    build:
+      context: ./docker/local/nginx
+      dockerfile: Dockerfile
+    ports:
+      - "8080:80"
+    restart: always
+    depends_on:
+      - api
+    volumes:
+      - static_volume:/app/staticfiles
+      - pdf_volume:/app/docs
+    networks:
+      - invoice
+
 networks:
   invoice:
     driver: bridge
 
 volumes:
   mongodb-data:
+  static_volume:
+  pdf_volume:
