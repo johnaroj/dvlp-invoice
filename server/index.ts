@@ -4,6 +4,7 @@ import cookieParser from "cookie-parser";
 import morgan from "morgan";
 import { morganMiddleware, systemLogger } from "./utils/Logger";
 import mongoSantize from "express-mongo-sanitize";
+import { errorHandler, notFound } from "./middleware/errorMiddleware";
 
 const app = express();
 
@@ -21,6 +22,8 @@ app.get("/api/v1/test", (req: Request, res: Response) => {
   res.json({ message: "Hello World" });
 });
 
+app.use(notFound);
+app.use(errorHandler);
 const PORT = process.env.PORT || 1997;
 
 app.listen(PORT, () => {
