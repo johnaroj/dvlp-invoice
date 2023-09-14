@@ -27,7 +27,7 @@ const userSchema = new Schema(
         message: `username must be alphanumeric, without special characters. Hypens and underscores are allowed.`,
       },
     },
-    firstname: {
+    firstName: {
       type: String,
       required: true,
       trim: true,
@@ -36,7 +36,7 @@ const userSchema = new Schema(
         "First Name can only have Alphanumeric values. No special characters allowed.",
       ],
     },
-    lastname: {
+    lastName: {
       type: String,
       required: true,
       trim: true,

@@ -4,9 +4,8 @@
   "description": "an invoicing web app built with MERN stack",
   "main": "index.js",
   "scripts": {
-    "build": "tsc -p .",
-    "start": "node server/build/index.js",
-    "dev": "nodemon server/index.ts"
+    "dev": "nodemon server/index.ts",
+    "build": "tsc"
   },
   "repository": {
     "type": "git",

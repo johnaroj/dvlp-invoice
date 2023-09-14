@@ -9,7 +9,7 @@ import { systemLogger } from "./Logger";
 const sendEmail = async (
   email: string,
   subject: string,
-  payload: string,
+  payload: Record<string, unknown>,
   template: string
 ) => {
   try {

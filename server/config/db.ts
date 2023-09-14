@@ -1,8 +1,10 @@
+import "dotenv/config";
 import mongoose from "mongoose";
 import { systemLogger } from "../utils/Logger";
 
 const chalk = import("chalk").then((m) => m.default);
 
+console.log(process.env.MONGO_URI);
 const db = async () => {
   try {
     const connectionParams = {
