@@ -16,7 +16,7 @@ RUN  addgroup --system invoice \
 COPY ./package*.json ./
 
 
-RUN npm ci
+RUN npm i 
 
 COPY --chown=invoice:invoice . ${APP_HOME}
 

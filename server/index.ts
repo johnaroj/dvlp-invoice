@@ -8,7 +8,6 @@ import { errorHandler, notFound } from "./middleware/errorMiddleware";
 import authRoutes from "./routes/authRoutes";
 import db from "./config/db.js";
 
-//await db();
 const app = express();
 
 if (process.env.NODE_ENV === "development") {
