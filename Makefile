@@ -5,7 +5,7 @@ up:
 	docker compose -f local.yml up -d
 
 down:
-	docker compose -f local.yml down
+	docker compose -f local.yml down --volumes   
 
 down-v:
 	docker compose -f local.yml down -v

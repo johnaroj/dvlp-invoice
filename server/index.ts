@@ -1,8 +1,9 @@
-import cookieParser from "cookie-parser";
 import "dotenv/config";
 import express, { Request, Response } from "express";
+import cookieParser from "cookie-parser";
 import morgan from "morgan";
 import { morganMiddleware, systemLogger } from "./utils/Logger";
+import mongoSantize from "express-mongo-sanitize";
 
 const app = express();
 
@@ -13,6 +14,7 @@ if (process.env.NODE_ENV === "development") {
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(mongoSantize());
 app.use(morganMiddleware);
 
 app.get("/api/v1/test", (req: Request, res: Response) => {
