@@ -6,8 +6,9 @@ import { morganMiddleware, systemLogger } from "./utils/Logger";
 import mongoSantize from "express-mongo-sanitize";
 import { errorHandler, notFound } from "./middleware/errorMiddleware";
 import authRoutes from "./routes/authRoutes";
-import db from "./config/db.js";
+import db from "./config/db";
 
+(async () => await db())();
 const app = express();
 
 if (process.env.NODE_ENV === "development") {

@@ -21,10 +21,10 @@ const userSchema = new Schema(
       unique: true,
       trim: true,
       validate: {
-        validator: (username: string) => {
-          return /^[A-z][A-Z0-9-_]{3,23}$/.test(username);
+        validator: function (value: string) {
+          return /^[A-z][A-z0-9-_]{3,23}$/.test(value);
         },
-        message: `username must be alphanumeric, without special characters. Hypens and underscores are allowed.`,
+        message: `username must be alphanumeric, without special characters. Hyphens and underscores are allowed.`,
       },
     },
     firstName: {
@@ -75,12 +75,12 @@ const userSchema = new Schema(
     googleID: String,
     avatar: String,
     businessName: String,
-    phoneNumnber: {
+    phoneNumber: {
       type: String,
-      default: "+31223456789",
+      default: "+31612345678",
       validate: [
         validator.isMobilePhone,
-        "Your mobile phone number must begin with a '+', followed by your country code, followed by your country code then actual phone number. For example: +31223456789",
+        "Your mobile phone number must begin with a '+', followed by your  country code then actual number e.g +31612345678",
       ],
     },
     address: String,

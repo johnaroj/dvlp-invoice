@@ -14,7 +14,7 @@ const sendEmail = async (
 ) => {
   try {
     const sourceDirectory = fs.readFileSync(
-      path.join(process.cwd(), template),
+      path.join(__dirname, template),
       "utf-8"
     );
     const compiledTemplate = handlebars.compile(sourceDirectory);
