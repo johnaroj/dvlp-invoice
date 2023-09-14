@@ -1,15 +1,13 @@
 FROM node:18.16.0-alpine AS base
 
-RUN npm install -g pnpm
-
 ARG APP_HOME=/app
 
 WORKDIR ${APP_HOME}
 
-COPY  package.json pnpm-lock.yaml ./
+COPY  package*.json ./
 
-RUN pnpm install  
+RUN npm install  
 
 COPY . ${APP_HOME}
 
-CMD ["pnpm", "start"]
+CMD ["npm", "start"]
