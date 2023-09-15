@@ -14,7 +14,7 @@ const verifyUserEmail = asyncHandler(async (req: Request, res: Response) => {
   const user = await User.findOne({ _id: req.params.userId }).select(
     "-passwordConfirm"
   );
-
+  console.log(req.params.emailToken);
   if (!user) {
     res.status(404);
     throw new Error("User not found");
@@ -25,7 +25,7 @@ const verifyUserEmail = asyncHandler(async (req: Request, res: Response) => {
   }
 
   const userToken = await VerificationToken.findOne({
-    user: user._id,
+    _userId: user._id,
     token: req.params.emailToken,
   });
 
