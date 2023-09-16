@@ -1,5 +1,6 @@
-import bcrypt from "bcrypt";
+
 import "dotenv/config";
+import bcrypt from "bcryptjs";
 import mongoose, { InferSchemaType } from "mongoose";
 import validator from "validator";
 import { USER } from "../constants/index";

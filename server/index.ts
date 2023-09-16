@@ -27,8 +27,8 @@ app.get("/api/v1/test", (req: Request, res: Response) => {
 
 app.use("/api/v1/auth", authRoutes);
 
-app.use(notFound);
-app.use(errorHandler);
+// app.use(notFound);
+// app.use(errorHandler);
 const PORT = process.env.PORT || 1997;
 
 app.listen(PORT, () => {

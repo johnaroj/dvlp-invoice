@@ -2,8 +2,8 @@ import asyncHandler from "express-async-handler";
 import User from "../../models/userModel";
 import VerificationToken from "../../models/verifyResetTokenModel";
 import sendEmail from "../../utils/sendEmail";
-import { randomBytes } from "crypto";
 import { Request, Response } from "express";
+
 
 const domainUrl = process.env.DOMAIN_URL;
 
@@ -62,7 +62,7 @@ const registerUser = asyncHandler(async (req: Request, res: Response) => {
   }
 
   if (registeredUser) {
-    const verificationToken = randomBytes(32).toString("hex");
+    const verificationToken = (await import("crypto")).randomBytes(32).toString('hex');
     let emailVerificationToken = await new VerificationToken({
       _userId: registeredUser._id,
       token: verificationToken,
