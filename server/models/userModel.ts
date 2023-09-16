@@ -1,6 +1,6 @@
 import bcrypt from "bcrypt";
 import "dotenv/config";
-import mongoose from "mongoose";
+import mongoose, { InferSchemaType } from "mongoose";
 import validator from "validator";
 import { USER } from "../constants/index";
 
@@ -96,6 +96,7 @@ const userSchema = new Schema(
       default: true,
     },
     refreshToken: [String],
+    methods: {},
   },
   {
     timestamps: true,
@@ -126,10 +127,14 @@ userSchema.pre("save", async function (next) {
   next();
 });
 
-userSchema.methods.comparePassword = async function (givenPassword: any) {
+userSchema.methods.comparePassword = async function (givenPassword: string) {
   return await bcrypt.compare(givenPassword, this.password);
 };
 
-const User = mongoose.model("User", userSchema);
+declare interface IUser extends InferSchemaType<typeof userSchema> {
+  comparePassword(givenPassword: string): Promise<boolean>;
+}
+
+const User = mongoose.model<IUser>("User", userSchema);
 
 export default User;

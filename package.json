@@ -50,6 +50,7 @@
     "@types/nodemailer": "^6.4.10",
     "@types/validator": "^13.11.1",
     "nodemon": "^3.0.1",
-    "ts-node": "^10.9.1"
+    "ts-node": "^10.9.1",
+    "typescript": "^5.2.2"
   }
 }

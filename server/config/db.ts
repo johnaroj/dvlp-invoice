@@ -7,7 +7,6 @@ const db = async () => {
     const connectionParams = {
       dbName: process.env.DB_NAME,
     };
-
     const conn = await mongoose.connect(
       process.env.MONGO_URI!,
       connectionParams
