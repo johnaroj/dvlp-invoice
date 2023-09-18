@@ -6,7 +6,9 @@ import { morganMiddleware, systemLogger } from "./utils/Logger";
 import mongoSantize from "express-mongo-sanitize";
 import { errorHandler, notFound } from "./middleware/errorMiddleware";
 import authRoutes from "./routes/authRoutes";
+import userRoutes from "./routes/userRoutes";
 import db from "./config/db";
+import { apiLimiter } from "./middleware/apiLimiter";
 
 (async () => await db())();
 const app = express();
@@ -26,6 +28,7 @@ app.get("/api/v1/test", (req: Request, res: Response) => {
 });
 
 app.use("/api/v1/auth", authRoutes);
+app.use("/api/v1/user", apiLimiter, userRoutes);
 
 app.use(notFound);
 app.use(errorHandler);
