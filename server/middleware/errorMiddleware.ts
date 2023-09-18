@@ -7,8 +7,8 @@ const errorHandler = (
   next: NextFunction
 ) => {
   const statusCode = res.statusCode ? res.statusCode : 500;
-  res.status(statusCode);
-  return res.json({
+  
+  return res.status(statusCode).json({
     success: false,
     message: err.message,
     statusCode: statusCode,
