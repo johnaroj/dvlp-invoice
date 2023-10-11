@@ -1,12 +1,12 @@
 {
   "compilerOptions": {
     "outDir": "./server/build",
-    "target": "es2017" ,
+    "target": "es2017",
     "lib": ["es2017", "esnext.asynciterable"],
-    "module": "CommonJS" ,
+    "module": "CommonJS",
     "moduleResolution": "node",
-    "esModuleInterop": true,
+    "esModuleInterop": true
   },
   "include": ["server/**/*"],
-  "exclude": ["**/client/**/*"]
+  "exclude": ["client/**/*"]
 }
